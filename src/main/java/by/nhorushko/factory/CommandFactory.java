@@ -1,7 +1,7 @@
 package by.nhorushko.factory;
 
 import by.nhorushko.command.*;
-import by.nhorushko.menu.MenuLayer;
+import by.nhorushko.menu.Menu;
 import by.nhorushko.model.StudentDatabase;
 import by.nhorushko.model.Token;
 import lombok.RequiredArgsConstructor;
@@ -12,15 +12,15 @@ import java.util.Scanner;
 public class CommandFactory {
     private final Scanner scanner;
     private final StudentDatabase database;
-    private final MenuLayer menuLayer;
+    private final Menu menu;
 
     public Command create(Token token) {
         switch (token) {
             case LOAD -> {
-                return new LoadDatabaseCommand(scanner, database, menuLayer);
+                return new LoadDatabaseCommand(scanner, database, menu);
             }
             case CREATE -> {
-                return new CreateDatabaseCommand(scanner, database, menuLayer);
+                return new CreateDatabaseCommand(scanner, database, menu);
             }
             case EXIT -> {
                 return new ExitCommand();
@@ -50,7 +50,7 @@ public class CommandFactory {
                 return new SaveDatabaseCommand(scanner, database);
             }
             case MAIN -> {
-                return new StopMenuCommand(menuLayer);
+                return new StopMenuCommand(menu);
             }
             default -> {
                 return new InvalidCommand();

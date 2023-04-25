@@ -7,14 +7,15 @@ import java.util.Scanner;
 
 import static by.nhorushko.model.Token.*;
 
-public class MenuLayerMain extends MenuLayer {
+public class MenuStudent extends Menu {
 
-    public MenuLayerMain(Scanner scanner, StudentDatabase database) {
+    public MenuStudent(Scanner scanner, StudentDatabase database) {
         super(scanner, database);
     }
 
     @Override
     protected void setAvailableTokens() {
-        this.availableTokens = List.of(LOAD, CREATE, EXIT);
+        this.availableTokens = List.of(ADD, REMOVE, ALL, ADD_GRADES, UPDATE_GRADE, REMOVE_GRADE, VIEW, SAVE, MAIN, EXIT);
     }
 }
+

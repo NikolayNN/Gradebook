@@ -1,7 +1,7 @@
 package by.nhorushko;
 
-import by.nhorushko.menu.MenuLayerMain;
-import by.nhorushko.menu.MenuLayerStudent;
+import by.nhorushko.menu.MenuMain;
+import by.nhorushko.menu.MenuStudent;
 import by.nhorushko.model.StudentDatabase;
 
 import java.util.Scanner;
@@ -11,8 +11,8 @@ public abstract class ApplicationStarter {
     private static final StudentDatabase database = new StudentDatabase();
 
     public static void start() {
-        MenuLayerMain main = new MenuLayerMain(scanner, database);
-        MenuLayerStudent student = new MenuLayerStudent(scanner, database);
+        MenuMain main = new MenuMain(scanner, database);
+        MenuStudent student = new MenuStudent(scanner, database);
         main.setRelative(student);
         student.setRelative(main);
 

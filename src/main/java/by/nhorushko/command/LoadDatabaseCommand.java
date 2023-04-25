@@ -1,15 +1,15 @@
 package by.nhorushko.command;
 
-import by.nhorushko.menu.MenuLayer;
+import by.nhorushko.menu.Menu;
 import by.nhorushko.model.StudentDatabase;
 
 import java.util.Scanner;
 
 public class LoadDatabaseCommand extends AbstractCommand {
     private final StudentDatabase database;
-    private final MenuLayer current;
+    private final Menu current;
 
-    public LoadDatabaseCommand(Scanner scanner, StudentDatabase database, MenuLayer current) {
+    public LoadDatabaseCommand(Scanner scanner, StudentDatabase database, Menu current) {
         super(scanner);
         this.database = database;
         this.current = current;
