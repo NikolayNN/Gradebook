@@ -1,0 +1,8 @@
+package by.nhorushko.command;
+
+public class InvalidCommand implements Command {
+    @Override
+    public void execute() {
+        System.out.println("Invalid command, please try again.");
+    }
+}

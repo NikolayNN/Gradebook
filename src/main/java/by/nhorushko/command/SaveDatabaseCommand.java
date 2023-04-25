@@ -4,7 +4,7 @@ import by.nhorushko.model.StudentDatabase;
 
 import java.util.Scanner;
 
-public class SaveDatabaseCommand extends Command {
+public class SaveDatabaseCommand extends AbstractCommand {
     private final StudentDatabase database;
     public SaveDatabaseCommand(Scanner scanner, StudentDatabase database) {
         super(scanner);

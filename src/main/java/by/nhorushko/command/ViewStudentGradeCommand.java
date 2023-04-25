@@ -5,7 +5,7 @@ import by.nhorushko.model.StudentDatabase;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class ViewStudentGradeCommand extends Command {
+public class ViewStudentGradeCommand extends AbstractCommand {
     protected final StudentDatabase database;
 
     public ViewStudentGradeCommand(Scanner scanner, StudentDatabase database) {

@@ -4,7 +4,7 @@ import by.nhorushko.model.StudentDatabase;
 
 import java.util.Scanner;
 
-public class RemoveStudentCommand extends Command {
+public class RemoveStudentCommand extends AbstractCommand {
     private final StudentDatabase database;
 
     public RemoveStudentCommand(Scanner scanner, StudentDatabase database) {

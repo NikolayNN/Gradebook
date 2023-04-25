@@ -2,10 +2,7 @@ package by.nhorushko.command;
 
 import java.util.Scanner;
 
-public class ExitCommand extends Command{
-    public ExitCommand(Scanner scanner) {
-        super(scanner);
-    }
+public class ExitCommand implements Command {
 
     @Override
     public void execute() {

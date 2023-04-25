@@ -3,17 +3,11 @@ package by.nhorushko.model;
 import lombok.Value;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Value
-public class StudentDatabase {
+public class StudentDatabase implements Serializable {
     Map<String, Student> students = new HashMap<>();
-
-    public void addStudent(String name) {
-        students.put(name, new Student(name));
-    }
 
     public void addStudent(Student student) {
         students.put(student.getName(), student);
@@ -23,59 +17,38 @@ public class StudentDatabase {
         students.remove(name);
     }
 
-    public void addGrade(String name, int grade) {
-        Student student = students.get(name);
-        if (student == null) {
-            System.out.println("Student " + name + " not found");
-            return;
-        }
-        student.addGrade(grade);
+    public void updateGrade(String name, int index, int grade) {
+        getStudent(name)
+                .ifPresent(s -> s.updateGrade(index, grade));
     }
 
     public void addGrade(String name, List<Integer> grades) {
-        Student student = students.get(name);
-        if (student == null) {
-            System.out.println("Student " + name + " not found");
-            return;
-        }
-        student.addGrades(grades);
+        getStudent(name)
+                .ifPresent(s -> s.addGrades(grades));
     }
 
     public void removeGrade(String name, int index) {
-        Student student = students.get(name);
-        if (student == null) {
-            System.out.println("Student " + name + " not found");
-            return;
-        }
-        try {
-            student.removeGrade(index);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Invalid index: " + index);
-        }
+        getStudent(name)
+                .ifPresent(s -> s.removeGrade(index));
     }
 
     public List<Integer> getGrades(String name) {
-        Student student = students.get(name);
-        if (student == null) {
-            System.out.println("Student " + name + " not found");
-            return null;
-        }
-        return student.getGrades();
+        return getStudent(name)
+                .map(Student::getGrades)
+                .orElse(List.of());
     }
 
-    public Map<String, List<Integer>> getAllGrades() {
-        Map<String, List<Integer>> allGrades = new HashMap<>();
-        for (Map.Entry<String, Student> entry : students.entrySet()) {
-            allGrades.put(entry.getKey(), entry.getValue().getGrades());
-        }
-        return allGrades;
+    public Set<String> getAllStudentNames() {
+        return students.keySet();
     }
 
     public void saveToFile(String filename) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+        try (FileOutputStream fos = new FileOutputStream(filename);
+             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(students);
         } catch (IOException e) {
             e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -91,5 +64,17 @@ public class StudentDatabase {
 
     public void clear() {
         students.clear();
+    }
+
+    private Optional<Student> getStudent(String name) {
+        Student student = students.get(name);
+        if (student == null) {
+            throw new RuntimeException("Student " + name + " not found");
+        }
+        return Optional.ofNullable(student);
+    }
+
+    public void checkExist(String name) {
+        getStudent(name);
     }
 }

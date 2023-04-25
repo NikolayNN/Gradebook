@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class AddStudentGradesCommand extends Command {
+public class AddStudentGradesCommand extends AbstractCommand {
     private final StudentDatabase database;
 
     public AddStudentGradesCommand(Scanner scanner, StudentDatabase database) {
@@ -18,6 +18,7 @@ public class AddStudentGradesCommand extends Command {
     @Override
     public void execute() {
         String name = receiveStudentName();
+        database.checkExist(name);
         List<Integer> grades = receiveMarks();
         database.addGrade(name, grades);
     }

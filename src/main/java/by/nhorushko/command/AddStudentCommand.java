@@ -5,7 +5,7 @@ import by.nhorushko.model.StudentDatabase;
 
 import java.util.Scanner;
 
-public class AddStudentCommand extends Command {
+public class AddStudentCommand extends AbstractCommand {
     private final StudentDatabase database;
 
     public AddStudentCommand(Scanner scanner, StudentDatabase database) {
