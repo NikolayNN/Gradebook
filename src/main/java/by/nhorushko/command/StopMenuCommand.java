@@ -1,13 +1,13 @@
 package by.nhorushko.command;
 
-import by.nhorushko.menu.Menu;
+import by.nhorushko.menu.MenuLayer;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class StopMenuCommand implements Command {
-    private final Menu menu;
+    private final MenuLayer menuLayer;
     @Override
     public void execute() {
-        menu.stop();
+        menuLayer.stop();
     }
 }

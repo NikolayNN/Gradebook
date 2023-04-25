@@ -71,7 +71,7 @@ public class StudentDatabase implements Serializable {
         if (student == null) {
             throw new RuntimeException("Student " + name + " not found");
         }
-        return Optional.ofNullable(student);
+        return Optional.of(student);
     }
 
     public void checkExist(String name) {

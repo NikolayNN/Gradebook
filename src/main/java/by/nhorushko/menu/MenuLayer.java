@@ -2,16 +2,14 @@ package by.nhorushko.menu;
 
 import by.nhorushko.factory.CommandFactory;
 import by.nhorushko.model.Token;
-import by.nhorushko.command.Command;
 import by.nhorushko.model.StudentDatabase;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public abstract class Menu {
+public abstract class MenuLayer {
 
     protected final Scanner scanner;
     protected final StudentDatabase database;
@@ -20,11 +18,11 @@ public abstract class Menu {
     protected List<Token> availableTokens = new ArrayList<>();
 
     @Setter
-    private Menu relative;
+    private MenuLayer relative;
 
     private boolean isRunning = false;
 
-    public Menu(Scanner scanner, StudentDatabase database) {
+    public MenuLayer(Scanner scanner, StudentDatabase database) {
         this.scanner = scanner;
         this.database = database;
         this.commandFactory = new CommandFactory(this.scanner, this.database, this);
